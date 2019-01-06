@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package IO;
+package project;
 
 /**
  *
@@ -14,19 +14,20 @@ public class Uzytkownik
     private String imie;
     private String nazwisko;
     private int id;
-    private String email;
-    private String password;
+    private String login;
+    private String haslo;
     
-public Uzytkownik(String imie, String nazwisko, int id,String email)
+public Uzytkownik( int id,String imie, String nazwisko,String login,String haslo)
 {
     this.imie=imie;
     this.nazwisko=nazwisko;
     this.id=id;
-    this.email=email;
+    this.login=login;
+    this.haslo=haslo;
 }
 public Uzytkownik()
 {
-   
+    
 }
   public String getImie()
   {
@@ -52,13 +53,13 @@ public Uzytkownik()
   {
      this.id=id;
   }
-  public void setEmail(String email)
+  public void setLogin(String login)
   {
-      this.email=email;
+      this.login=login;
   }
-  public String getEmail()
+  public String getLogin()
   {
-      return email;
+      return login;
   }
   public float podajWartoscRachunkuZPodatkiem(int nr)
   {

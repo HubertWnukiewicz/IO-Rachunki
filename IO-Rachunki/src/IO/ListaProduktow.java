@@ -3,7 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package IO;
+package project;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +29,6 @@ public class ListaProduktow {
     public ArrayList<Produkt> getProdukty() {
         return produkty;
     }
-
     public void setProdukty(ArrayList<Produkt> produkty) {
         this.produkty = produkty;
     }

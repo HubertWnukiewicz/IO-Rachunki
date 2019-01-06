@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//
-package IO;
+package project;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /**
  *
  * @author hubert
@@ -14,7 +18,7 @@ public class Aplikacja {
      static ListaProduktow listaProduktow=new ListaProduktow();
     
      
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
        // ListaUzytkownikow listaUzytkownikow=new ListaUzytkownikow();
         //ListaProduktow listaProduktow=new ListaProduktow();
         
@@ -27,7 +31,6 @@ public class Aplikacja {
       ListaProduktow.dodajProdukt(produkt1);
       ListaProduktow.dodajProdukt(produkt2);
       ListaProduktow.dodajProdukt(produkt3);
-
       ListaProduktow.produkty.add(produkt);
       ListaProduktow.produkty.size();
       System.out.println(ListaProduktow.produkty.size());
@@ -139,8 +142,8 @@ public class Aplikacja {
       System.out.println("---------------------LISTA 333--------------------");
       listaUzytkownikow.szukanieRachunku(333);
       System.out.println("---------------------LISTA  12--------------------");
-      listaUzytkownikow.szukanieRachunku(12);*/
-    
+      listaUzytkownikow.szukanieRachunku(12);/
+        ------------------------------------------------------------------
       Podatek podatek=new Podatek(13);
       Produkt produkt=new Produkt(0,"buty",10,podatek);
       Produkt produkt1=new Produkt(1,"plecak",22,podatek);
@@ -172,7 +175,13 @@ public class Aplikacja {
      
       klient.PrintAll();
        System.out.println(klient.ObliczWartoscRachunku(43));
-      System.out.println(klient.ObliczWartoscRachunku(1));
-      
+      System.out.println(klient.ObliczWartoscRachunku(1)); */
+    server myserver=new server();
+    //myserver.addUsertoDB("Adrian","Malecki","popek","xd");
+    //myserver.addProducttoDB( "komputer", 89.87, 0.4, 0.0,10);
+    //myserver.addProducttoDB( "telefon", 11.41, 0.1, 0.8,84);
+    myserver.readProductsFromDB(listaProduktow);
+    listaProduktow.printAll();
+    
     }
 }

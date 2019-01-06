@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package IO;
+package project;
 
 /**
  *
@@ -11,7 +11,6 @@ package IO;
  */
 public class Zakup {
     
-    // int id_zakup;
     private Produkt produkt;
     private int ilosc;
 
