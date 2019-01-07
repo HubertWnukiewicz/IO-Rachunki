@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project;
+package IO;
 
 /**
  *
@@ -61,9 +61,12 @@ public Uzytkownik()
   {
       return login;
   }
-  public float podajWartoscRachunkuZPodatkiem(int nr)
+  public boolean weryfikacja(String login ,String haslo) 
   {
-      return 0; //TODO
+      if(this.login.equals(login) && this.haslo.equals(haslo))
+          return true;
+                  
+    return false;
   }
       
 }

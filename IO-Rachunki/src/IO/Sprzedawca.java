@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project;
+package IO;
 
 /**
  *
@@ -32,16 +32,16 @@ public class Sprzedawca extends Uzytkownik
        {
            if(spis.getUzytkownicy().get(i) instanceof Klient)
            {
-               Klient xx=(Klient) spis.getUzytkownicy().get(i);
-                        for(int j=0;j<xx.getRachunki().size();j++)
+               Klient klient=(Klient) spis.getUzytkownicy().get(i);
+                        for(int j=0;j<klient.getRachunki().size();j++)
                        {
-                           if( xx.getRachunki().get(j).numer==nr)
+                           if( klient.getRachunki().get(j).numer==nr)
                            {
-                                xx.getRachunki().get(j).oplacony=true;
+                                klient.getRachunki().get(j).oplacony=true;
                                 return;
                            }
                            else 
-                               System.out.println("nie ten numer przykro mi " + xx.getRachunki().get(j).numer);
+                               System.out.println("nie ten numer przykro mi " + klient.getRachunki().get(j).numer);
                        }
               
                 

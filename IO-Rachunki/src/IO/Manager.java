@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project;
+package IO;
 
 /**
  *
@@ -22,7 +22,9 @@ public class Manager extends Sprzedawca{
                     {
                         if( klient.getRachunki().get(j).numer==nr)
                         {
+                            Rachunek rachunek=klient.getRachunki().get(j);
                             System.out.println("Taki rachunek istnieje i nalezy do kliena o ID: "+klient.getID()+klient.getImie());
+                            klient.getRachunki().remove(rachunek);
                             return;
                         }
                     }  

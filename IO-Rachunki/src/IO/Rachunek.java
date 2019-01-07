@@ -4,7 +4,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project;
+package IO;
 import java.util.ArrayList;
 /**
  *
@@ -35,7 +35,17 @@ public class Rachunek {
     {
        oplacony=true;
     }
-    public void DodajZakup(Zakup zakup)
+     public void DodajIloscDoZakupu(Produkt produkt,int ilosc)
+    {
+     for(int i=0;i<this.ileZakupow();i++)
+     {
+         if(this.zakup.get(i).getProdukt().equals(produkt))
+         {
+             this.zakup.get(i).setIlosc(ilosc+ this.zakup.get(i).getIlosc());
+         }
+     }
+    }
+    public void DodajNowyZakup(Zakup zakup)
     {
         this.zakup.add(zakup);
     }
@@ -48,6 +58,15 @@ public class Rachunek {
     public int ileZakupow()
     {
         return zakup.size();
+    }
+     public boolean czyJestZakup(Zakup zakup)
+    {
+        for(int i=0;i<this.ileZakupow();i++)
+        {
+            if(this.zakup.get(i).getProdukt().equals(zakup.getProdukt()))
+                return true;
+        }
+        return false;
     }
     
 }

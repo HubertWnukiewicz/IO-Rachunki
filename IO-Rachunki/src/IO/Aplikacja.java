@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project;
+package IO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -176,12 +176,12 @@ public class Aplikacja {
       klient.PrintAll();
        System.out.println(klient.ObliczWartoscRachunku(43));
       System.out.println(klient.ObliczWartoscRachunku(1)); */
-    server myserver=new server();
+    //server myserver=new server();
     //myserver.addUsertoDB("Adrian","Malecki","popek","xd");
     //myserver.addProducttoDB( "komputer", 89.87, 0.4, 0.0,10);
     //myserver.addProducttoDB( "telefon", 11.41, 0.1, 0.8,84);
-    myserver.readProductsFromDB(listaProduktow);
-    listaProduktow.printAll();
+    //myserver.readProductsFromDB(listaProduktow);
+    //listaProduktow.printAll();
     
     }
 }

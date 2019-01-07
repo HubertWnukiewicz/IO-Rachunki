@@ -3,8 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project;
-
+package IO;
 /**
  *
  * @author Admin
@@ -26,6 +25,10 @@ public class Zakup {
     {
         return ilosc;
     }
+     public void setIlosc(int ilosc)
+    {
+        this.ilosc=ilosc;
+    }
     public Zakup( Produkt produkt, int ilosc)
     {
         this.ilosc=ilosc;
@@ -35,7 +38,22 @@ public class Zakup {
     {
         System.out.println("Nazwa: " + this.produkt.getNazwa() +", ilosc:" + this.ilosc);
     }
-    
+     public Zakup UtworzZakup(Produkt produkt, int ilosc, ListaProduktow listaProduktow)
+    {
+        if(listaProduktow.szukajProdukt(produkt)==true)
+        {
+            if(listaProduktow.getIloscProduktu(produkt)>=ilosc)
+            {   
+                int value=listaProduktow.getIloscProduktu(produkt)-ilosc;
+                listaProduktow.setIloscProduktu(produkt,value);
+                Zakup zakup=new Zakup(produkt, ilosc);
+                return zakup;
+            }
+            else
+                System.out.println("Brak takiej ilości towaru");
+        }
+        return null;
+    }
     
     
 }

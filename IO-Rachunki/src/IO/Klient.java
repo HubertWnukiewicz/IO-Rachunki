@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project;
+package IO;
 
 import java.util.ArrayList;
 
@@ -15,33 +15,43 @@ public class Klient extends Uzytkownik {
     
 private ArrayList<Rachunek> rachunki=new ArrayList<Rachunek>();
     
-    public void wstawZakup(int nr,int ilosc, String[] dane, ListaProduktow listaProduktow)
-    {
-        for(int i=0;i<this.rachunki.size();i++)
-        {
-            if(szukajRachunek(nr)!=null)
+    public void wstawZakup(int nr, Zakup zakup, ListaProduktow listaProduktow)
+     {
+        if(listaProduktow!=null && zakup!=null)
+            for(int i=0;i<this.rachunki.size();i++)
             {
-                int id=Integer.parseInt(dane[0]);
-                String name=dane[1];
-                float cena=Float.parseFloat(dane[2]);
-                float wartosc=Float.parseFloat(dane[3]);
-                Podatek podatek=new Podatek(wartosc);
-                Produkt produkt=new Produkt(id,name,cena,podatek);
-                
-                if(listaProduktow.szukajProdukt(produkt))
-                {
-                    Zakup zakup=new Zakup(produkt,ilosc);
-                    rachunki.get(i).DodajZakup(zakup);
-                    ObliczWartoscRachunku(nr);
+                if(szukajRachunek(nr)!=null)
+                {   
+                    if(listaProduktow.szukajProdukt(zakup.getProdukt())==true)
+                    {
+                        if(rachunki.get(i).ileZakupow()!=0)
+                        {
+                                if(rachunki.get(i).czyJestZakup(zakup))
+                                {
+                                    System.out.println("ISTNIEJE - Dodaje ilosc");
+                                    rachunki.get(i).DodajIloscDoZakupu(zakup.getProdukt(), zakup.getIlosc());
+                                    ObliczWartoscRachunku(rachunki.get(i).numer);
+                                }
+                                else
+                                {
+                                    System.out.println("NIE ISTNIEJE- Dodaje nowy produkt");
+                                    rachunki.get(i).DodajNowyZakup(zakup);  
+                                    ObliczWartoscRachunku(rachunki.get(i).numer);
+                                }
+
+                        }
+                        else
+                        {
+                            System.out.println("Pierwszy produkt na rachunu");
+                            rachunki.get(i).DodajNowyZakup(zakup);
+                        }
+
+                    }
+
                 }
-                else
-                    System.out.println("Brak produktu w katalogu");
-                
+             else System.out.println("Brak produktu w katalogu");
             }
-            else
-                System.out.println("Taki numer rachunku nie istnieje.");
-        }
-    }
+     }
 
     public ArrayList<Rachunek> getRachunki() {
         return rachunki;

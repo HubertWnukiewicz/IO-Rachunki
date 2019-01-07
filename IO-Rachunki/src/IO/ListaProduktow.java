@@ -2,9 +2,8 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
-package project;
-
+*/
+package IO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -69,6 +68,12 @@ public class ListaProduktow {
         if(szukajProdukt(produkt)==true)
             return katalog.get(produkt);
         return -1;
+    }
+    
+    public void setIloscProduktu(Produkt produkt, int ilosc)
+    {
+        if(szukajProdukt(produkt)==true)
+            katalog.replace(produkt, ilosc);
     }
     public void printAll()
     {
