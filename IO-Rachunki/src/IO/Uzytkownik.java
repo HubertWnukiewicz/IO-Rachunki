@@ -49,6 +49,15 @@ public Uzytkownik()
   {
       return id;
   }
+
+    public String getHaslo() {
+        return haslo;
+    }
+
+    public void setHaslo(String haslo) {
+        this.haslo = haslo;
+    }
+  
   public void setID(int id)
   {
      this.id=id;

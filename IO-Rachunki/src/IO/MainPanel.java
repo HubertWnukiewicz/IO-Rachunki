@@ -14,12 +14,22 @@ import javax.swing.JPanel;
  */
 public class MainPanel extends javax.swing.JFrame {
     
-
+    ListaUzytkownikow listaUzytkownikow;
+    ListaProduktow listaProduktow;
     /**
      * Creates new form MainPanel
+     * @param listaUzytkownikow
+     * @param listaProduktow
      */
-    public MainPanel() {
+    public MainPanel(ListaUzytkownikow listaUzytkownikow,ListaProduktow listaProduktow) {
         initComponents();
+        setVisible(true);
+        int windowWidth = 500;           // Window width in pixels
+    int windowHeight = 250;          // Window height in pixels
+    setBounds(50, 100,       // Set position
+         windowWidth, windowHeight);  // and size
+   this.listaProduktow=listaProduktow;
+   this.listaUzytkownikow=listaUzytkownikow;
     }
 
     /**
@@ -43,14 +53,11 @@ public class MainPanel extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("password");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-
-        jTextField2.setText("login");
 
         jButton2.setText("Zaloguj");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -59,8 +66,8 @@ public class MainPanel extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -90,15 +97,33 @@ public class MainPanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       this.setVisible(false);
+       Rejestracja rejestracja= new Rejestracja(listaUzytkownikow, listaProduktow);
+       rejestracja.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        String password=jTextField1.getText();
+        String login=jTextField2.getText();
+        boolean success=false;
+        for(int i=0;i<listaUzytkownikow.getUzytkownicy().size();i++)
+        {
+            if(listaUzytkownikow.getUzytkownicy().get(i).getLogin().equals(login) &&listaUzytkownikow.getUzytkownicy().get(i).getHaslo().equals(password) )
+            {
+                System.out.println("LOGOWANIE UDANE");
+                success=true;
+            }    
+        }
+        if(success==false)
+        {
+            System.out.println("BŁĄD LOGOWANIA");
+            jTextField1.setText("");
+            jTextField2.setText("");
+        }   
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+  
     }//GEN-LAST:event_jTextField1ActionPerformed
 
 

@@ -8,12 +8,13 @@ package IO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 
 /**
  *
  * @author hubert
  */
-public class Aplikacja {
+public class Aplikacja{
     static ListaUzytkownikow listaUzytkownikow=new ListaUzytkownikow();
      static ListaProduktow listaProduktow=new ListaProduktow();
     
@@ -182,6 +183,20 @@ public class Aplikacja {
     //myserver.addProducttoDB( "telefon", 11.41, 0.1, 0.8,84);
     //myserver.readProductsFromDB(listaProduktow);
     //listaProduktow.printAll();
-    
+    /*
+    JFrame aWindow = new JFrame("This is the Window Title");
+    int windowWidth = 400;           // Window width in pixels
+    int windowHeight = 150;          // Window height in pixels
+    aWindow.setBounds(50, 100,       // Set position
+         windowWidth, windowHeight);  // and size
+    aWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    aWindow.setVisible(true);        // Display the window
+*/
+    Uzytkownik a=new Uzytkownik(1,"hubert","wnuk","root","root23");
+    listaUzytkownikow.dodajUzytkownika(a);
+    MainPanel mainpanel=new MainPanel(listaUzytkownikow,listaProduktow);
+    mainpanel.setVisible(true);
+    mainpanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 }
