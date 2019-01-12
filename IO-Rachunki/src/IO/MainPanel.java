@@ -119,9 +119,14 @@ public class MainPanel extends javax.swing.JFrame {
             System.out.println("BŁĄD LOGOWANIA");
             jTextField1.setText("");
             jTextField2.setText("");
-        }   
+        }
+        else
+        {
+            this.setVisible(false);
+            MainMenu mainMenu= new MainMenu(listaUzytkownikow, listaProduktow);
+            mainMenu.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    }
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
   
     }//GEN-LAST:event_jTextField1ActionPerformed
