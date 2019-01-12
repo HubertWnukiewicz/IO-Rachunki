@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Aplikacja{
      static ListaProduktow listaProduktow=new ListaProduktow();
     
      
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
        // ListaUzytkownikow listaUzytkownikow=new ListaUzytkownikow();
         //ListaProduktow listaProduktow=new ListaProduktow();
         
@@ -191,10 +192,21 @@ public class Aplikacja{
          windowWidth, windowHeight);  // and size
     aWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     aWindow.setVisible(true);        // Display the window
-*/
-    Uzytkownik a=new Uzytkownik(1,"hubert","wnuk","root","root23");
+    
+*/  
+    Podatek podatek=new Podatek(13);
+      Produkt produkt=new Produkt(0,"buty",10,podatek);
+      Produkt produkt1=new Produkt(1,"plecak",22,podatek);
+      Produkt produkt2=new Produkt(2,"kapelusz",44,podatek);
+      Produkt produkt3=new Produkt(3,"torba",77,podatek);
+      listaProduktow.dodajProduktdoKatalogu(produkt, 10);
+      listaProduktow.dodajProduktdoKatalogu(produkt1, 99);
+      listaProduktow.dodajProduktdoKatalogu(produkt2, 11551);
+      listaProduktow.dodajProduktdoKatalogu(produkt3, 546);
+    Uzytkownik a=new Uzytkownik(1,"hubert","wnuk","user","user");
     listaUzytkownikow.dodajUzytkownika(a);
-    MainPanel mainpanel=new MainPanel(listaUzytkownikow,listaProduktow);
+    System.out.println("listaProduktow"+listaProduktow.getKatalog().size());
+    Logowanie mainpanel=new Logowanie(listaUzytkownikow,listaProduktow);
     mainpanel.setVisible(true);
     mainpanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

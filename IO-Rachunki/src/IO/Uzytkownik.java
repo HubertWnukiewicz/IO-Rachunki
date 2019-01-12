@@ -39,7 +39,7 @@ public Uzytkownik()
   }
   public String getNazwisko()
   {
-    return null;
+    return this.nazwisko;
   } 
   public void setNazwisko(String nazwisko)
   {

@@ -24,6 +24,10 @@ public class Rejestracja extends javax.swing.JFrame {
          windowWidth, windowHeight);
         this.listaUzytkownikow=listaUzytkownikow;
         this.listaProduktow=listaProduktow;
+        this.jComboBox1.addItem("Klient");
+        this.jComboBox1.addItem("Sprzedawca");
+        this.jComboBox1.addItem("Manager");
+        
     }
 
     /**
@@ -44,6 +48,8 @@ public class Rejestracja extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +65,19 @@ public class Rejestracja extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Powrót");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
             }
         });
 
@@ -80,11 +99,15 @@ public class Rejestracja extends javax.swing.JFrame {
                             .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                             .addComponent(jTextField2)
                             .addComponent(jTextField3)
-                            .addComponent(jTextField4)))
+                            .addComponent(jTextField4))
+                        .addGap(59, 59, 59)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(97, 97, 97)
-                        .addComponent(jButton1)))
-                .addContainerGap(366, Short.MAX_VALUE))
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(279, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,7 +115,8 @@ public class Rejestracja extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -106,7 +130,9 @@ public class Rejestracja extends javax.swing.JFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap(241, Short.MAX_VALUE))
         );
 
@@ -118,32 +144,50 @@ public class Rejestracja extends javax.swing.JFrame {
         String nazwisko=jTextField2.getText();
         String password=jTextField4.getText();
         String login=jTextField3.getText();
-        boolean found=false; 
-        
-        for(int i=0;i<listaUzytkownikow.getUzytkownicy().size();i++)
+        boolean exsists=false; 
+        if(jTextField1.getText().isEmpty() ||jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty() ||jTextField4.getText().isEmpty() )
+                System.out.println("Brak wszystkich danych");
+        else
         {
-            if(listaUzytkownikow.getUzytkownicy().get(i).getLogin().equals(login))
+            for(int i=0;i<listaUzytkownikow.getUzytkownicy().size();i++)
             {
-                System.out.println("Uzytkownik o takim loginie istnieje");
-                jTextField1.setText("");
-                jTextField2.setText("");
-                jTextField3.setText("");
-                jTextField4.setText("");
-                found=true;
-            }   
+                if(listaUzytkownikow.getUzytkownicy().get(i).getLogin().equals(login))
+                {
+                    System.out.println("Uzytkownik o takim loginie istnieje");
+                    jTextField1.setText("");
+                    jTextField2.setText("");
+                    jTextField3.setText("");
+                    jTextField4.setText("");
+                    exsists=true;
+                }
+
+            }
+            if(exsists==false)
+            {
+                Uzytkownik a=new Uzytkownik(listaUzytkownikow.getUzytkownicy().size()+1,imie,nazwisko,login,password);
+                listaUzytkownikow.dodajUzytkownika(a);
+                exsists=false;
+                this.setVisible(false);
+
+                Logowanie mainpanel=new Logowanie( listaUzytkownikow, listaProduktow);
+                mainpanel.setVisible(true);
+            }
         }
+
         
-        if(found==false)
-        {
-            Uzytkownik a=new Uzytkownik(listaUzytkownikow.getUzytkownicy().size()+1,imie,nazwisko,login,password);
-            listaUzytkownikow.dodajUzytkownika(a);
-            found=false;
-            this.setVisible(false);
-            
-            MainPanel mainpanel=new MainPanel( listaUzytkownikow, listaProduktow);
-            mainpanel.setVisible(true);
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.setVisible(false);
+        Logowanie mainpanel=new Logowanie( listaUzytkownikow, listaProduktow);
+        mainpanel.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+      
+      System.out.println("Wybrane: "+this.jComboBox1.getSelectedItem().toString());
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,6 +196,8 @@ public class Rejestracja extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

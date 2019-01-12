@@ -27,3 +27,4 @@ hs_err_pid*
 /IO-Rachunki/nbproject/private/
 /IO-Rachunki/build/
 *.form
+/IO-Rachunki/dist/

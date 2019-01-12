@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  *
  * @author Admin
  */
-public class MainPanel extends javax.swing.JFrame {
+public class Logowanie extends javax.swing.JFrame {
     
     ListaUzytkownikow listaUzytkownikow;
     ListaProduktow listaProduktow;
@@ -21,7 +21,7 @@ public class MainPanel extends javax.swing.JFrame {
      * @param listaUzytkownikow
      * @param listaProduktow
      */
-    public MainPanel(ListaUzytkownikow listaUzytkownikow,ListaProduktow listaProduktow) {
+    public Logowanie(ListaUzytkownikow listaUzytkownikow,ListaProduktow listaProduktow) {
         initComponents();
         setVisible(true);
         int windowWidth = 500;           // Window width in pixels
