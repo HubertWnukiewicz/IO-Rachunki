@@ -97,6 +97,7 @@ public class Logowanie extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
        this.setVisible(false);
        Rejestracja rejestracja= new Rejestracja(listaUzytkownikow, listaProduktow);
        rejestracja.setVisible(true);
@@ -105,12 +106,14 @@ public class Logowanie extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String password=jTextField1.getText();
         String login=jTextField2.getText();
+        int nrKlienta=1;
         boolean success=false;
         for(int i=0;i<listaUzytkownikow.getUzytkownicy().size();i++)
         {
             if(listaUzytkownikow.getUzytkownicy().get(i).getLogin().equals(login) &&listaUzytkownikow.getUzytkownicy().get(i).getHaslo().equals(password) )
             {
                 System.out.println("LOGOWANIE UDANE");
+                nrKlienta=listaUzytkownikow.getUzytkownicy().get(i).getID();
                 success=true;
             }    
         }
@@ -123,7 +126,7 @@ public class Logowanie extends javax.swing.JFrame {
         else
         {
             this.setVisible(false);
-            MainMenu mainMenu= new MainMenu(listaUzytkownikow, listaProduktow);
+            MainMenu mainMenu= new MainMenu(listaUzytkownikow, listaProduktow,nrKlienta);
             mainMenu.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
     }
