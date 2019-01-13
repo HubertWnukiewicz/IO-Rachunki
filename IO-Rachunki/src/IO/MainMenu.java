@@ -17,6 +17,7 @@ public class MainMenu extends javax.swing.JFrame {
  private ListaUzytkownikow listaUzytkownikow;
  private ListaProduktow listaProduktow;
  int nrKlienta;
+ Klient uzytkownik;
     /**
      * Creates new form MainMenu
      */
@@ -32,11 +33,11 @@ public class MainMenu extends javax.swing.JFrame {
         this.nrKlienta=nrKlienta;
         DefaultListModel listModel =new DefaultListModel();
       
-        jList2 =new JList(listModel);
+        //jList2 =new JList(listModel);
         jList2.setModel(listModel);
         for (Produkt produkt: listaProduktow.getKatalog().keySet())
         {
-            listModel.addElement("Nazwa: "+produkt.getNazwa());
+            listModel.addElement("Nazwa: "+produkt.getNazwa()+" Cena: "+produkt.getCena());
             //listModel.addElement("hehs");
             jList2.ensureIndexIsVisible(listModel.getSize());
             jList2.updateUI();
@@ -49,6 +50,7 @@ public class MainMenu extends javax.swing.JFrame {
         {
             if(listaUzytkownikow.getUzytkownicy().get(i).getID()==nrKlienta)
             {
+                uzytkownik=(Klient)listaUzytkownikow.getUzytkownicy().get(i);
                 if(listaUzytkownikow.getUzytkownicy().get(i) instanceof Sprzedawca)
                     this.jButton3.setVisible(true);
                 if(listaUzytkownikow.getUzytkownicy().get(i) instanceof Manager)
@@ -79,6 +81,7 @@ public class MainMenu extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +121,13 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setText("Dodaj do koszyka");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,11 +141,16 @@ public class MainMenu extends javax.swing.JFrame {
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(73, 73, 73)
-                                .addComponent(jLabel2)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(73, 73, 73)
+                                        .addComponent(jLabel2))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton6)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addContainerGap(249, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(390, 390, 390)
                 .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -157,7 +172,7 @@ public class MainMenu extends javax.swing.JFrame {
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -165,7 +180,9 @@ public class MainMenu extends javax.swing.JFrame {
                         .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton6)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -192,6 +209,14 @@ public class MainMenu extends javax.swing.JFrame {
         panel.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        String nazwa=this.jList2.getSelectedValue();
+        Produkt produkt=this.listaProduktow.dodajProduktzJListy(nazwa);
+        int ilosc=1; //TODO field
+        Zakup zakup=new Zakup(produkt,ilosc);
+        this.uzytkownik.wstawZakup(44, zakup, listaProduktow); //TODO generate nr rachunku
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -202,6 +227,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList2;

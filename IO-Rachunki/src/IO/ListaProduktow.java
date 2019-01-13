@@ -59,6 +59,19 @@ public class ListaProduktow {
             return true;
         return false;
     }
+    public Produkt dodajProduktzJListy(String name)
+    {
+       for(Produkt produkt: katalog.keySet())
+       {
+           if(produkt.getNazwa().equals(name))
+           {
+               System.out.println(produkt.getNazwa());
+               return produkt;
+           }
+               
+       }
+            return null;
+    }
     public void dodajProduktdoKatalogu(Produkt produkt, int Ilosc)
     {
         katalog.put(produkt, Ilosc);
