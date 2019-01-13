@@ -204,6 +204,16 @@ public class Aplikacja{
       listaProduktow.dodajProduktdoKatalogu(produkt2, 11551);
       listaProduktow.dodajProduktdoKatalogu(produkt3, 546);
     Uzytkownik a=new Uzytkownik(1,"hubert","wnuk","user","user");
+    Manager klient=new Manager();
+    klient.setImie("root");
+    klient.setNazwisko("root");
+    klient.setLogin("root");
+    klient.setHaslo("root");
+    Rachunek rachunek=new Rachunek(43);
+    Rachunek rachunek2=new Rachunek(55);
+    //klient.dodajRachunek(rachunek);
+    //klient.dodajRachunek(rachunek2);
+    listaUzytkownikow.dodajUzytkownika(klient);
     listaUzytkownikow.dodajUzytkownika(a);
     System.out.println("listaProduktow"+listaProduktow.getKatalog().size());
     Logowanie mainpanel=new Logowanie(listaUzytkownikow,listaProduktow);

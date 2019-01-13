@@ -24,7 +24,7 @@ public class Logowanie extends javax.swing.JFrame {
     public Logowanie(ListaUzytkownikow listaUzytkownikow,ListaProduktow listaProduktow) {
         initComponents();
         setVisible(true);
-        int windowWidth = 500;           // Window width in pixels
+        int windowWidth = 550;           // Window width in pixels
     int windowHeight = 250;          // Window height in pixels
     setBounds(50, 100,       // Set position
          windowWidth, windowHeight);  // and size
