@@ -23,6 +23,18 @@ public class Podatek {
     public void setWartoscPodatku(float wartoscPodatku) {
         this.wartoscPodatku = wartoscPodatku;
     }
+    @Override
+    public boolean equals(Object podatek){
+        Podatek podatek1=(Podatek)podatek;
+     if(podatek1==null)
+         return false;
+     
+     boolean bPodatek1=true;
+     if(this.wartoscPodatku!=podatek1.getWartoscPodatku())
+         bPodatek1=false;
+     
+     return bPodatek1;
+    }
      
      
 }

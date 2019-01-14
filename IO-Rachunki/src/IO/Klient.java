@@ -6,6 +6,7 @@
 package IO;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -64,8 +65,11 @@ private ArrayList<Rachunek> rachunki=new ArrayList<Rachunek>();
     {
         this.rachunki.add(rachunek);
     }
-    public void dodajRachunek(int nr)
-    {   Rachunek rachunek=new Rachunek(nr); //TODO if nr istnieje
+    public void stworzRachunek()
+    {   
+        Random generator=new Random();
+        int nr=generator.nextInt();
+        Rachunek rachunek=new Rachunek(nr); //TODO check if it already exists
             this.rachunki.add(rachunek);
     }
     public boolean szukajProdukt(Produkt produkt)
@@ -85,7 +89,7 @@ private ArrayList<Rachunek> rachunki=new ArrayList<Rachunek>();
         {
             for(int i=0;i<rachunki.size();i++)
             {
-                if(rachunki.get(i).numer==nr)
+                if(rachunki.get(i).getNumer()==nr)
                     return rachunki.get(i);
             }
         }
@@ -125,7 +129,7 @@ private ArrayList<Rachunek> rachunki=new ArrayList<Rachunek>();
     {
         for(int i=0;i<rachunki.size();i++)
         {
-            System.out.println("---Nr: "+rachunki.get(i).numer+"---");
+            System.out.println("---Nr: "+rachunki.get(i).getNumer()+"---");
             for(int j=0;j<rachunki.get(i).ileZakupow();j++)
             {
                 System.out.println("Zakup nr: "+j);
@@ -133,5 +137,22 @@ private ArrayList<Rachunek> rachunki=new ArrayList<Rachunek>();
             }
             System.out.println("------------------------------------");
         }
+    }
+    @Override
+    public boolean equals(Object klient){
+        Klient klient1=(Klient)klient;
+        if(klient1==null)
+            return false;
+        boolean bKlient1=true;
+        if(this.getID()!=klient1.getID())
+            bKlient1=false;
+        else if(!this.getImie().equals(klient1.getImie()))
+            bKlient1=false;
+        else if(!this.getLogin().equals(klient1.getLogin()))
+            bKlient1=false;
+        else if(!this.getNazwisko().equals(klient1.getNazwisko()))
+            bKlient1=false;
+        
+        return bKlient1;
     }
 }

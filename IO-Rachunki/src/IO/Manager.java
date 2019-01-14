@@ -20,7 +20,7 @@ public class Manager extends Sprzedawca{
                Klient klient=(Klient) spis.getUzytkownicy().get(i);
                     for(int j=0;j<klient.getRachunki().size();j++)
                     {
-                        if( klient.getRachunki().get(j).numer==nr)
+                        if( klient.getRachunki().get(j).getNumer()==nr)
                         {
                             Rachunek rachunek=klient.getRachunki().get(j);
                             System.out.println("Taki rachunek istnieje i nalezy do kliena o ID: "+klient.getID()+klient.getImie());

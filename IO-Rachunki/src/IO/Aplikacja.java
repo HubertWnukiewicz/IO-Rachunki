@@ -5,11 +5,10 @@
  */
 package IO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.SQLException;
 import javax.swing.JFrame;
-import javax.swing.UIManager;
+
 
 /**
  *
@@ -195,14 +194,16 @@ public class Aplikacja{
     
 */  
     Podatek podatek=new Podatek(13);
-      Produkt produkt=new Produkt(0,"buty",10,podatek);
-      Produkt produkt1=new Produkt(1,"plecak",22,podatek);
-      Produkt produkt2=new Produkt(2,"kapelusz",44,podatek);
-      Produkt produkt3=new Produkt(3,"torba",77,podatek);
-      listaProduktow.dodajProduktdoKatalogu(produkt, 10);
-      listaProduktow.dodajProduktdoKatalogu(produkt1, 99);
-      listaProduktow.dodajProduktdoKatalogu(produkt2, 11551);
-      listaProduktow.dodajProduktdoKatalogu(produkt3, 546);
+    Produkt produkt=new Produkt(0,"buty",10,podatek);
+    Produkt produkt1=new Produkt(1,"plecak",22,podatek);
+    Produkt produkt2=new Produkt(2,"kapelusz",44,podatek);
+    Produkt produkt3=new Produkt(3,"torba",77,podatek);
+    Produkt produkt4=new Produkt(0,"buty",11,podatek);
+    listaProduktow.dodajProduktdoKatalogu(produkt, 10);
+    listaProduktow.dodajProduktdoKatalogu(produkt1, 99);
+    listaProduktow.dodajProduktdoKatalogu(produkt2, 11551);
+    listaProduktow.dodajProduktdoKatalogu(produkt3, 546);
+    listaProduktow.dodajProduktdoKatalogu(produkt4, 1);
     Uzytkownik a=new Uzytkownik(1,"hubert","wnuk","user","user");
     Klient klient=new Klient();
     klient.setImie("root");
@@ -216,9 +217,14 @@ public class Aplikacja{
     listaUzytkownikow.dodajUzytkownika(klient);
     listaUzytkownikow.dodajUzytkownika(a);
     System.out.println("listaProduktow"+listaProduktow.getKatalog().size());
-    Logowanie mainpanel=new Logowanie(listaUzytkownikow,listaProduktow);
-    mainpanel.setVisible(true);
-    mainpanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    if(produkt.equals(produkt4))
+        System.out.println("to samo");
+    //________________________________________________________________________
+    //________________________________________________________________________
+    //Logowanie mainpanel=new Logowanie(listaUzytkownikow,listaProduktow);
+    //mainpanel.setVisible(true);
+    //mainpanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
 }

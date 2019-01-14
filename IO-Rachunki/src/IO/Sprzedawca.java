@@ -35,13 +35,13 @@ public class Sprzedawca extends Uzytkownik
                Klient klient=(Klient) spis.getUzytkownicy().get(i);
                         for(int j=0;j<klient.getRachunki().size();j++)
                        {
-                           if( klient.getRachunki().get(j).numer==nr)
+                           if( klient.getRachunki().get(j).getNumer()==nr)
                            {
                                 klient.getRachunki().get(j).oplacony=true;
                                 return;
                            }
                            else 
-                               System.out.println("nie ten numer przykro mi " + klient.getRachunki().get(j).numer);
+                               System.out.println("nie ten numer przykro mi " + klient.getRachunki().get(j).getNumer());
                        }
               
                 

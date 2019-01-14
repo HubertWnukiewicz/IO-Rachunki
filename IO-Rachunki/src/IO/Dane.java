@@ -18,6 +18,9 @@ public class Dane extends javax.swing.JFrame {
     int nrKlienta;
     /**
      * Creates new form Dane
+     * @param listaUzytkownikow
+     * @param listaProduktow
+     * @param nrKlienta
      */
     public Dane(ListaUzytkownikow listaUzytkownikow,ListaProduktow listaProduktow,int nrKlienta) {
         initComponents();

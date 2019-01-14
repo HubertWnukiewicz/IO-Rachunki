@@ -62,11 +62,34 @@ public class Produkt {
     public void setID(int ID) {
         this.id=ID;
     }
+    
     public Promocja getPromocja() {
         return promocja;
     }
 
     public Podatek getPodatek() {
         return podatek;
+    }
+    
+    @Override
+    public boolean equals(Object produkt){
+
+     Produkt produkt1=(Produkt)produkt;
+     if(produkt1==null)
+         return false;
+     boolean bProdukt1=true;
+     
+     if(!this.nazwa.equals(produkt1.getNazwa()))
+         bProdukt1=false;
+     else if(this.id!=produkt1.getID())
+         bProdukt1=false;
+     else if(this.cena!=produkt1.cena)
+         bProdukt1=false;
+     else if(!this.podatek.equals(produkt1.podatek))
+         bProdukt1=false;
+     //else if(!this.promocja.equals(produkt1.promocja))
+         //bProdukt1=false;
+     
+     return bProdukt1;
     }
 }

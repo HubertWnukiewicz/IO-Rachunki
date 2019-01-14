@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Rachunek {
     
-    int numer;
+    private int numer;
     ArrayList<Zakup> zakup;
     boolean oplacony;
     
@@ -23,6 +23,24 @@ public class Rachunek {
      oplacony=false;
     }
 
+    public int getNumer() {
+        return numer;
+    }
+
+    public void setNumer(int numer) {
+        this.numer = numer;
+    }
+
+    public boolean isOplacony() {
+        return oplacony;
+    }
+
+    public void setOplacony(boolean oplacony) {
+        this.oplacony = oplacony;
+    }
+    
+    
+    
     public void setZakup(ArrayList<Zakup> zakup) {
         this.zakup = zakup;
     }
@@ -49,16 +67,19 @@ public class Rachunek {
     {
         this.zakup.add(zakup);
     }
+    
     public void print()
     {   for(int i=0;i<this.zakup.size();i++)
         {
             System.out.println("Pozycja: "+i+", nazwa:" + this.zakup.get(i).getProdukt().getNazwa());
         }
     }
+    
     public int ileZakupow()
     {
         return zakup.size();
     }
+    
      public boolean czyJestZakup(Zakup zakup)
     {
         for(int i=0;i<this.ileZakupow();i++)
@@ -68,5 +89,19 @@ public class Rachunek {
         }
         return false;
     }
-    
+    @Override
+    public boolean equals(Object rachunek){
+        Rachunek rachunek1=(Rachunek)rachunek;
+        if(rachunek1==null)
+            return false;
+        boolean bRachunek1=true;
+        if(this.numer!=rachunek1.numer)
+            bRachunek1=false;
+        else if(this.oplacony!=rachunek1.oplacony)
+            bRachunek1=false;
+        else if(!this.getZakup().equals(rachunek1.getZakup()))
+            bRachunek1=false;
+        
+        return bRachunek1;
+    }
 }

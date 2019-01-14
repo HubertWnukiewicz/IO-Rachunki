@@ -55,5 +55,17 @@ public class Zakup {
         return null;
     }
     
-    
+    @Override
+    public boolean equals(Object zakup){
+     Zakup zakup1=(Zakup)zakup;
+     if(zakup1==null)
+         return false;
+     boolean bZakup1=true;
+     if(this.ilosc!=zakup1.getIlosc())
+         bZakup1=false;
+     else if(!this.produkt.equals(zakup1.getProdukt()))
+         bZakup1=false;
+     
+     return bZakup1;
+    }
 }

@@ -48,7 +48,7 @@ public class ListaUzytkownikow {
                Rachunek rachunek=klient.szukajRachunek(nr);
                if(rachunek!=null)
                {
-                   System.out.println("Numer rachunku: " +rachunek.numer +" id klienta: " + klient.getID());
+                   System.out.println("Numer rachunku: " +rachunek.getNumer() +" id klienta: " + klient.getID());
                    return rachunek;
                }
            }
