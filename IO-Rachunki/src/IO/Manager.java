@@ -36,11 +36,12 @@ public class Manager extends Sprzedawca{
 
     public void dodajPromocje(ListaProduktow listaProduktow, Produkt produkt, Promocja promocja)
     {
-        //TODO dodajpromocje
-        if(listaProduktow.szukajProdukt(produkt)==true)
-        {
-            produkt.setPromocja(promocja);
-        }
-
+       if(!listaProduktow.getKatalog().isEmpty())
+       {
+          if(listaProduktow.szukajProdukt(produkt)==true)
+            {
+                produkt.setPromocja(promocja);
+            } 
+       }
     }
 }

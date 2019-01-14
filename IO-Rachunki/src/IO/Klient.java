@@ -30,13 +30,13 @@ private ArrayList<Rachunek> rachunki=new ArrayList<Rachunek>();
                                 {
                                     System.out.println("ISTNIEJE - Dodaje ilosc");
                                     rachunki.get(i).DodajIloscDoZakupu(zakup.getProdukt(), zakup.getIlosc());
-                                    ObliczWartoscRachunku(rachunki.get(i).numer);
+                                    //ObliczWartoscRachunku(rachunki.get(i).numer);
                                 }
                                 else
                                 {
                                     System.out.println("NIE ISTNIEJE- Dodaje nowy produkt");
                                     rachunki.get(i).DodajNowyZakup(zakup);  
-                                    ObliczWartoscRachunku(rachunki.get(i).numer);
+                                    //ObliczWartoscRachunku(rachunki.get(i).numer);
                                 }
 
                         }
@@ -64,7 +64,10 @@ private ArrayList<Rachunek> rachunki=new ArrayList<Rachunek>();
     {
         this.rachunki.add(rachunek);
     }
-    
+    public void dodajRachunek(int nr)
+    {   Rachunek rachunek=new Rachunek(nr); //TODO if nr istnieje
+            this.rachunki.add(rachunek);
+    }
     public boolean szukajProdukt(Produkt produkt)
     {
         for(int i=0;i<rachunki.size();i++)
@@ -78,14 +81,17 @@ private ArrayList<Rachunek> rachunki=new ArrayList<Rachunek>();
     
     public Rachunek szukajRachunek(int nr)
     {
-        for(int i=0;i<rachunki.size();i++)
+        if(!this.rachunki.isEmpty())
         {
-            if(rachunki.get(i).numer==nr)
-                return rachunki.get(i);
+            for(int i=0;i<rachunki.size();i++)
+            {
+                if(rachunki.get(i).numer==nr)
+                    return rachunki.get(i);
+            }
         }
-        return null;
+         return null; 
     }
-    public float ObliczWartoscRachunku(int nr)
+    public float ObliczWartoscRachunkuBezPodatku(int nr)
     {
         float suma=0;
         Rachunek tmpRachunek=szukajRachunek(nr);
@@ -94,6 +100,22 @@ private ArrayList<Rachunek> rachunki=new ArrayList<Rachunek>();
             for(int i=0;i<tmpRachunek.ileZakupow();i++)
             {
                 suma=suma+(tmpRachunek.getZakup().get(i).getProdukt().getCena()*tmpRachunek.getZakup().get(i).getIlosc());
+            }
+            return suma;
+        }
+        return suma;
+    }
+    public float ObliczWartoscRachunkuZPodatkiem(int nr)
+    {
+        float suma=0;
+        float tmpSuma;
+        Rachunek tmpRachunek=szukajRachunek(nr);
+        if(tmpRachunek!=null)
+        {
+            for(int i=0;i<tmpRachunek.ileZakupow();i++)
+            {
+                tmpSuma=tmpRachunek.getZakup().get(i).getProdukt().getCena()*tmpRachunek.getZakup().get(i).getProdukt().getPodatek().getWartoscPodatku()+tmpRachunek.getZakup().get(i).getProdukt().getCena();
+                suma=suma+(tmpSuma*tmpRachunek.getZakup().get(i).getIlosc());
             }
             return suma;
         }

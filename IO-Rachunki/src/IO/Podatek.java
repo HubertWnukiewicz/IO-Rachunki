@@ -15,6 +15,14 @@ public class Podatek {
     public Podatek(float wartoscPodatku) {
         this.wartoscPodatku = wartoscPodatku;
     }
+
+    public float getWartoscPodatku() {
+        return wartoscPodatku;
+    }
+
+    public void setWartoscPodatku(float wartoscPodatku) {
+        this.wartoscPodatku = wartoscPodatku;
+    }
      
      
 }
